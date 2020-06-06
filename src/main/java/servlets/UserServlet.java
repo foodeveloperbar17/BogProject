@@ -28,9 +28,9 @@ public class UserServlet extends HttpServlet {
         User user = DataBase.getInstance().getUser(userId);
         if(user == null){
             ServletUtils.safePrint("couldn't find user with given ID", resp, logger);
-            return;
+        } else {
+            ServletUtils.safePrint(JsonUtil.objToJson(user), resp, logger);
         }
-        ServletUtils.safePrint(JsonUtil.objToJson(user), resp, logger);
     }
 
     @Override

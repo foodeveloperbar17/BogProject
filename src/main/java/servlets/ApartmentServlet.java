@@ -29,9 +29,9 @@ public class ApartmentServlet extends HttpServlet {
         Apartment apartment = DataBase.getInstance().getApartment(apartmentId);
         if(apartment == null){
             ServletUtils.safePrint("couldn't find apartment with given ID", resp, logger);
-            return;
+        } else {
+            ServletUtils.safePrint(JsonUtil.objToJson(apartment), resp, logger);
         }
-        ServletUtils.safePrint(JsonUtil.objToJson(apartment), resp, logger);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ApartmentServlet extends HttpServlet {
             price = Double.parseDouble(req.getParameter("price"));
             lat = Double.parseDouble(req.getParameter("lat"));
             lng = Double.parseDouble(req.getParameter("lng"));
-            ownerId = Integer.parseInt("ownerId");
+            ownerId = Integer.parseInt(req.getParameter("ownerId"));
         } catch (Exception e) {
             ServletUtils.safePrint("Invalid parameters", resp, logger);
             return;

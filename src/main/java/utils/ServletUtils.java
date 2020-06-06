@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 public class ServletUtils {
     public static void safePrint(String message, HttpServletResponse resp, Logger logger) {
+        logger.info(message);
         try {
             resp.getOutputStream().println(message);
         } catch (IOException e) {

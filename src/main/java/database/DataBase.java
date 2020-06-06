@@ -132,6 +132,15 @@ public class DataBase {
         }
     }
 
+    public Rent getRent(int rentId){
+        List<Rent> result = getListFromTable(rentId, "models.Rent");
+        if (result == null || result.size() == 0) {
+            return null;
+        } else {
+            return result.get(0);
+        }
+    }
+
     private List getListFromTable(int id, String tableName) {
         try (Session session = getSession()) {
             Query query = session.createQuery("from " + tableName + " where id = :id");

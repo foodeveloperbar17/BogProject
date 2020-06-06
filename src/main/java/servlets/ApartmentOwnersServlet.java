@@ -26,9 +26,9 @@ public class ApartmentOwnersServlet extends HttpServlet {
         ApartmentOwner apartmentOwner = DataBase.getInstance().getApartmentOwner(apartmentOwnerId);
         if(apartmentOwner == null){
             ServletUtils.safePrint("couldn't find apartment owner with given ID", resp, logger);
-            return;
+        } else {
+            ServletUtils.safePrint(JsonUtil.objToJson(apartmentOwner), resp, logger);
         }
-        ServletUtils.safePrint(JsonUtil.objToJson(apartmentOwner), resp, logger);
     }
 
     @Override
